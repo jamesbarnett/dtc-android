@@ -1,0 +1,93 @@
+{
+  "designer": "Danh Ta",
+  "collections": [
+    {
+      "season": "Winter 2015",
+      "description": "Lorem Ipsum...",
+      "image": "",
+      "pieces": [
+        {
+          "title": "winter 1",
+          "description": "Winter's first piece",
+          "image": "kristen_bell"
+        },
+        {
+          "title": "winter 2",
+          "description": "Winter's second piece",
+          "image": "dreama_walker"
+        },
+        {
+          "title": "winter 3",
+          "description": "Winter's third piece",
+          "image": "piper_perabo"
+        }
+      ]
+    },
+    {
+      "season": "Spring 2015",
+      "description": "Lorem Ipsum...",
+      "image": "",
+      "pieces": [
+        {
+          "title": "spring 1",
+          "description": "Spring's first piece",
+          "image": "rose_byrne"
+        },
+        {
+          "title": "spring 2",
+          "description": "Spring's second piece",
+          "image": "lizzy_caplan"
+        },
+        {
+          "title": "spring 3",
+          "description": "Spring's third piece",
+          "image": "zooey_deschanel"
+        }
+      ]
+    },
+    {
+      "season": "Summer 2015",
+      "description": "Lorem Ipsum...",
+      "image": "",
+      "pieces": [
+        {
+          "title": "summer 1",
+          "description": "Summer's first piece",
+          "image": "emma_stone"
+        },
+        {
+          "title": "summer 2",
+          "description": "Summer's second piece",
+          "image": "felicia_day"
+        },
+        {
+          "title": "summer 3",
+          "description": "Summer's third piece",
+          "image": "sarah_rafferty"
+        }
+      ]
+    },
+    {
+      "season": "Fall 2015",
+      "description": "Lorem Ipsum...",
+      "image": "",
+      "pieces": [
+        {
+          "title": "fall 1",
+          "description": "Fall's first piece",
+          "image": "kristen_bell"
+        },
+        {
+          "title": "fall 2",
+          "description": "Fall's second piece",
+          "image": "dreama_walker"
+        },
+        {
+          "title": "fall 3",
+          "description": "Fall's third piece",
+          "image": "piper_perabo"
+        }
+      ]
+    }
+  ]
+}
