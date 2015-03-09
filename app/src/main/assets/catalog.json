@@ -1,0 +1,93 @@
+{
+	"designer": "Danh Ta",
+	"collections": [
+    	{
+    		"title": "Winter 2015",
+      		"description": "Lorem Ipsum...",
+      		"image": "",
+      		"pieces": [
+	        	{
+	          		"title": "winter 1",
+	          		"description": "Winter's first piece",
+	          		"image": ""
+	        	},
+	        	{
+	        		"title": "winter 2",
+	          		"description": "Winter's second piece",
+	          		"image": ""
+	        	},
+	        	{
+	          		"title": "winter 3",
+	          		"description": "Winter's third piece",
+	          		"image": ""
+	        	}
+      		]
+    	},
+	    {
+		    "title": "Spring 2015",
+		    "description": "Lorem Ipsum...",
+		    "image": "",
+		    "pieces": [
+		        {
+			        "title": "spring 1",
+			        "description": "Spring's first piece",
+			        "image": ""
+		        },
+		        {
+			        "title": "spring 2",
+			        "description": "Spring's second piece",
+			        "image": ""
+		        },
+		        {
+			        "title": "spring 3",
+			        "description": "Spring's third piece",
+			        "image": ""
+		        }
+    		]
+    	},
+    	{
+      		"title": "Summer 2015",
+      		"description": "Lorem Ipsum...",
+      		"image": "",
+      		"pieces": [
+	        	{
+	        		"title": "summer 1",
+	        		"description": "Summer's first piece",
+	        		"image": ""
+	        	},
+	        	{
+	        		"title": "summer 2",
+	         		"description": "Summer's second piece",
+	        		"image": ""
+	        	},
+	        	{
+	          		"title": "summer 3",
+	          		"description": "Summer's third piece",
+	          		"image": ""
+	        	}
+      		]
+    	},
+    	{
+		    "title": "Fall 2015",
+		    "description": "Lorem Ipsum...",
+		    "image": "",
+		    "pieces": [
+		        {
+			        "title": "fall 1",
+			        "description": "Fall's first piece",
+			        "image": ""
+		        },
+		        {
+			        "title": "fall 2",
+			        "description": "Fall's second piece",
+			        "image": ""
+		        },
+		        {
+			        "title": "fall 3",
+			        "description": "Fall's third piece",
+			        "image": ""
+		        }
+			]
+    	}
+	]
+}

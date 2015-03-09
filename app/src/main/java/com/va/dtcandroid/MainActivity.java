@@ -1,9 +1,10 @@
 package com.va.dtcandroid;
 
+import java.io.*;
 import java.util.*;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.util.Log;
+import android.util.*;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -15,8 +16,14 @@ public class MainActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Catalog catalog = new Catalog("Danh Ta", new ArrayList<Collection>());
-        Log.d(MainActivity.class.getSimpleName(), catalog.toString());
+        try {
+            InputStream inputStream = this.getResources().getAssets().open("catalog.json");
+            JsonReader reader = new JsonReader(new InputStreamReader(inputStream, "UTF-8"));
+            Catalog catalog = Catalog.parse(reader);
+            Log.d(MainActivity.class.getSimpleName(), catalog.toString());
+        } catch (Exception e) {
+            Log.d(MainActivity.class.getSimpleName(), String.format("Couldn't load the json file: %s", e.getMessage()));
+        }
     }
 
 
