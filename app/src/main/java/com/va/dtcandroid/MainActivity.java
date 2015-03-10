@@ -7,25 +7,40 @@ import android.os.Bundle;
 import android.util.*;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.*;
 
 
 public class MainActivity extends ActionBarActivity {
+    ListView collectionsList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        collectionsList = (ListView)findViewById(R.id.list);
 
         try {
             InputStream inputStream = this.getResources().getAssets().open("catalog.json");
             JsonReader reader = new JsonReader(new InputStreamReader(inputStream, "UTF-8"));
             Catalog catalog = Catalog.parse(reader);
-            Log.d(MainActivity.class.getSimpleName(), catalog.toString());
+
+            List<String> collectionTitles = new ArrayList<String>();
+
+            for (int i = 0; i < catalog.getCollections().size(); i++)
+            {
+                collectionTitles.add(catalog.getCollections().get(i).getTitle());
+            }
+
+            ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_list_item_1,
+                collectionTitles);
+            collectionsList.setAdapter(adapter);
+
+            // Log.d(MainActivity.class.getSimpleName(), catalog.toString());
         } catch (Exception e) {
             Log.d(MainActivity.class.getSimpleName(), String.format("Couldn't load the json file: %s", e.getMessage()));
         }
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
