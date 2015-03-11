@@ -7,36 +7,24 @@ import android.os.Bundle;
 import android.util.*;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.*;
 
-
 public class MainActivity extends ActionBarActivity {
-    ListView collectionsList;
+    private ListView _collectionsList;
+    private Catalog _catalog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        collectionsList = (ListView)findViewById(R.id.list);
+        _collectionsList = (ListView)findViewById(R.id.list);
 
         try {
             InputStream inputStream = this.getResources().getAssets().open("catalog.json");
             JsonReader reader = new JsonReader(new InputStreamReader(inputStream, "UTF-8"));
-            Catalog catalog = Catalog.parse(reader);
-
-            List<String> collectionTitles = new ArrayList<String>();
-
-            for (int i = 0; i < catalog.getCollections().size(); i++)
-            {
-                collectionTitles.add(catalog.getCollections().get(i).getTitle());
-            }
-
-            ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-                android.R.layout.simple_list_item_1,
-                collectionTitles);
-            collectionsList.setAdapter(adapter);
-
-            // Log.d(MainActivity.class.getSimpleName(), catalog.toString());
+            _catalog = Catalog.parse(reader);
+            initCollectionsList();
         } catch (Exception e) {
             Log.d(MainActivity.class.getSimpleName(), String.format("Couldn't load the json file: %s", e.getMessage()));
         }
@@ -62,5 +50,33 @@ public class MainActivity extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void initCollectionsList()
+    {
+        List<String> collectionTitles = new ArrayList<String>();
+
+        for (int i = 0; i < _catalog.getCollections().size(); i++)
+        {
+            collectionTitles.add(_catalog.getCollections().get(i).getTitle());
+        }
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_list_item_1,
+                collectionTitles);
+        _collectionsList.setAdapter(adapter);
+
+        _collectionsList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id)
+            {
+                int itemPosition = position;
+                String itemValue = (String)_collectionsList.getItemAtPosition(position);
+
+                Toast.makeText(getApplicationContext(),
+                    "Position: " + itemPosition + " ListItem: " + itemValue, Toast.LENGTH_LONG)
+                    .show();
+            }
+        });
     }
 }
