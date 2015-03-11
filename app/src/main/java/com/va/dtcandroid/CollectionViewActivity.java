@@ -1,9 +1,11 @@
 package com.va.dtcandroid;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.*;
 
 
 public class CollectionViewActivity extends ActionBarActivity {
@@ -11,7 +13,11 @@ public class CollectionViewActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Intent intent = getIntent();
+        int index = intent.getIntExtra("collectionIndex", 0);
         setContentView(R.layout.activity_collection_view);
+        TextView textView = (TextView)findViewById(R.id.collectionText);
+        textView.setText(String.format("The index: %d", index));
     }
 
 

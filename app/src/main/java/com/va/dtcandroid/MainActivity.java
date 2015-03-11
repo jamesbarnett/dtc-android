@@ -83,6 +83,7 @@ public class MainActivity extends ActionBarActivity {
                     "Position: " + itemPosition + " ListItem: " + itemValue, Toast.LENGTH_LONG)
                     .show();
                 Intent intent = new Intent(mainActivity, CollectionViewActivity.class);
+                intent.putExtra("collectionIndex", position);
                 startActivity(intent);
             }
         });
