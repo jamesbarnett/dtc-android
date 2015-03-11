@@ -2,6 +2,8 @@ package com.va.dtcandroid;
 
 import java.io.*;
 import java.util.*;
+
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.*;
@@ -13,6 +15,8 @@ import android.widget.*;
 public class MainActivity extends ActionBarActivity {
     private ListView _collectionsList;
     private Catalog _catalog;
+
+    public Catalog getCatalog() { return _catalog; }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +70,8 @@ public class MainActivity extends ActionBarActivity {
                 collectionTitles);
         _collectionsList.setAdapter(adapter);
 
+        final MainActivity mainActivity = this;
+
         _collectionsList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id)
@@ -76,6 +82,8 @@ public class MainActivity extends ActionBarActivity {
                 Toast.makeText(getApplicationContext(),
                     "Position: " + itemPosition + " ListItem: " + itemValue, Toast.LENGTH_LONG)
                     .show();
+                Intent intent = new Intent(mainActivity, CollectionViewActivity.class);
+                startActivity(intent);
             }
         });
     }
