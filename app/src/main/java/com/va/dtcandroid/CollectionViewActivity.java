@@ -17,7 +17,9 @@ public class CollectionViewActivity extends ActionBarActivity {
         int index = intent.getIntExtra("collectionIndex", 0);
         setContentView(R.layout.activity_collection_view);
         TextView textView = (TextView)findViewById(R.id.collectionText);
-        textView.setText(String.format("The index: %d", index));
+        MainActivity mainActivity = (MainActivity)this.getBaseContext();
+        textView.setText(String.format("The index: %s",
+            mainActivity.getCatalog().getCollections().get(index).getTitle()));
     }
 
 
