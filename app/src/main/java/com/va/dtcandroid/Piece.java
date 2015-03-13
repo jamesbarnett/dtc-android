@@ -78,11 +78,13 @@ public class Piece implements Parcelable {
     public String getDescription() { return _description; }
     public String getImage() { return _image; }
 
+    @Override
     public int describeContents()
     {
         return 0;
     }
 
+    @Override
     public void writeToParcel(Parcel out, int flags)
     {
         out.writeString(_title);

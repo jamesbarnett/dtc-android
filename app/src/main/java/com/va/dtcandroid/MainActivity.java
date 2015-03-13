@@ -76,9 +76,8 @@ public class MainActivity extends ActionBarActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id)
             {
-                int itemPosition = position;
                 Intent intent = new Intent(mainActivity, CollectionViewActivity.class);
-                intent.putExtra("collectionIndex", position);
+                intent.putExtra("selectedCollection", _catalog.getCollections().get(position));
                 startActivity(intent);
             }
         });

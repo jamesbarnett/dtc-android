@@ -1,12 +1,15 @@
 package com.va.dtcandroid;
 import java.io.IOException;
 import java.util.*;
+
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.util.*;
 
 /**
  * Created by jbarnett on 3/8/15.
  */
-public class Collection {
+public class Collection implements Parcelable {
     private String _title;
     private String _description;
     private String _image;
@@ -14,7 +17,7 @@ public class Collection {
 
     public Collection()
     {
-
+        _pieces = new ArrayList<>();
     }
 
     public Collection(String title, String description, String image, List<Piece> pieces) {
@@ -96,4 +99,39 @@ public class Collection {
 
         return buffer.toString();
     }
+
+    @Override
+    public int describeContents() { return 0; }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags)
+    {
+        dest.writeString(_title);
+        dest.writeString(_description);
+        dest.writeString(_image);
+        dest.writeTypedList(_pieces);
+    }
+
+    private Collection(Parcel in)
+    {
+        this();
+        _title = in.readString();
+        _description = in.readString();
+        _image = in.readString();
+        in.readTypedList(_pieces, Piece.CREATOR);
+    }
+
+    public static final Parcelable.Creator<Collection> CREATOR
+        = new Parcelable.Creator<Collection>()
+    {
+        public Collection createFromParcel(Parcel in)
+        {
+            return new Collection(in);
+        }
+
+        public Collection[] newArray(int size)
+        {
+            return new Collection[size];
+        }
+    };
 }

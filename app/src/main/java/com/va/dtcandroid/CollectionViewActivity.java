@@ -9,17 +9,16 @@ import android.widget.*;
 
 
 public class CollectionViewActivity extends ActionBarActivity {
+    private Collection _collection;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Intent intent = getIntent();
-        int index = intent.getIntExtra("collectionIndex", 0);
         setContentView(R.layout.activity_collection_view);
+        Intent intent = getIntent();
+        _collection = intent.getParcelableExtra("selectedCollection");
         TextView textView = (TextView)findViewById(R.id.collectionText);
-        MainActivity mainActivity = (MainActivity)this.getBaseContext();
-        textView.setText(String.format("The index: %s",
-            mainActivity.getCatalog().getCollections().get(index).getTitle()));
+        textView.setText(_collection.getTitle());
     }
 
 
