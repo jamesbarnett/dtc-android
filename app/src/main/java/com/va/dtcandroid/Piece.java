@@ -1,12 +1,15 @@
 package com.va.dtcandroid;
 import java.io.IOException;
 import java.util.*;
+
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.util.*;
 
 /**
  * Created by jbarnett on 3/8/15.
  */
-public class Piece {
+public class Piece implements Parcelable {
     private String _title;
     private String _description;
     private String _image;
@@ -14,13 +17,6 @@ public class Piece {
     public Piece()
     {
 
-    }
-
-    public Piece (String title, String description, String image)
-    {
-        _title = title;
-        _description = description;
-        _image = image;
     }
 
     public static List<Piece> parsePieces(JsonReader reader) throws IOException
@@ -81,4 +77,37 @@ public class Piece {
     public String getTitle() { return _title; }
     public String getDescription() { return _description; }
     public String getImage() { return _image; }
+
+    public int describeContents()
+    {
+        return 0;
+    }
+
+    public void writeToParcel(Parcel out, int flags)
+    {
+        out.writeString(_title);
+        out.writeString(_description);
+        out.writeString(_image);
+    }
+
+    public static final Parcelable.Creator<Piece> CREATOR = new Parcelable.Creator<Piece>()
+    {
+        public Piece createFromParcel(Parcel in)
+        {
+            return new Piece(in);
+        }
+
+        public Piece[] newArray(int size)
+        {
+            return new Piece[size];
+        }
+    };
+
+    private Piece(Parcel in)
+    {
+        _title = in.readString();
+        _description = in.readString();
+        _image = in.readString();
+    }
 }
+
