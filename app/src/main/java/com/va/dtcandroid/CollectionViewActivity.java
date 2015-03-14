@@ -1,15 +1,18 @@
 package com.va.dtcandroid;
 
 import android.content.Intent;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.view.ViewPager;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.*;
 
 
-public class CollectionViewActivity extends ActionBarActivity {
+public class CollectionViewActivity extends FragmentActivity {
     private Collection _collection;
+    private ViewPager _pager;
+    private PiecesPageAdapter _piecesPageAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,8 +20,9 @@ public class CollectionViewActivity extends ActionBarActivity {
         setContentView(R.layout.activity_collection_view);
         Intent intent = getIntent();
         _collection = intent.getParcelableExtra("selectedCollection");
-        TextView textView = (TextView)findViewById(R.id.collectionText);
-        textView.setText(_collection.getTitle());
+        _piecesPageAdapter = new PiecesPageAdapter(getSupportFragmentManager(), _collection);
+        _pager = (ViewPager)findViewById(R.id.piecesPager);
+        _pager.setAdapter(_piecesPageAdapter);
     }
 
 
