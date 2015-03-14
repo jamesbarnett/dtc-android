@@ -35,11 +35,6 @@ public class Catalog {
     {
 
     }
-    public Catalog(String designer, List<Collection> collections)
-    {
-        mDesigner = designer;
-        mCollections = collections;
-    }
 
     public String getDesigner() { return mDesigner; }
     public List<Collection> getCollections() { return mCollections; }

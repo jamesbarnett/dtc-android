@@ -10,21 +10,21 @@ import android.util.*;
  * Created by jbarnett on 3/8/15.
  */
 public class Collection implements Parcelable {
-    private String _title;
-    private String _description;
-    private String _image;
-    private List<Piece> _pieces;
+    private String mTitle;
+    private String mDescription;
+    private String mImage;
+    private List<Piece> mPieces;
 
     public Collection()
     {
-        _pieces = new ArrayList<>();
+        mPieces = new ArrayList<>();
     }
 
     public Collection(String title, String description, String image, List<Piece> pieces) {
-        _title = title;
-        _description = description;
-        _image = image;
-        _pieces = pieces;
+        mTitle = title;
+        mDescription = description;
+        mImage = image;
+        mPieces = pieces;
     }
 
     public static Collection parse(JsonReader reader) throws IOException
@@ -39,19 +39,19 @@ public class Collection implements Parcelable {
 
             if (name.equals("title"))
             {
-                collection._title = reader.nextString();
+                collection.mTitle = reader.nextString();
             }
             else if (name.equals("description"))
             {
-                collection._description = reader.nextString();
+                collection.mDescription = reader.nextString();
             }
             else if (name.equals("image"))
             {
-                collection._image = reader.nextString();
+                collection.mImage = reader.nextString();
             }
             else if (name.equals("pieces"))
             {
-                collection._pieces = Piece.parsePieces(reader);
+                collection.mPieces = Piece.parsePieces(reader);
             }
         }
 
@@ -76,21 +76,21 @@ public class Collection implements Parcelable {
         return collections;
     }
 
-    public String getTitle() { return _title; }
-    public String getDescription() { return _description; }
-    public String getImage() { return _image; }
-    public List<Piece> getPieces() { return _pieces; }
+    public String getTitle() { return mTitle; }
+    public String getDescription() { return mDescription; }
+    public String getImage() { return mImage; }
+    public List<Piece> getPieces() { return mPieces; }
 
     public String toString()
     {
         StringBuilder buffer = new StringBuilder();
 
-        buffer.append(String.format("Collection: { title: %s ", this._title));
-        buffer.append(String.format("description: %s ", this._description));
-        buffer.append(String.format("image: %s", this._image));
+        buffer.append(String.format("Collection: { title: %s ", this.mTitle));
+        buffer.append(String.format("description: %s ", this.mDescription));
+        buffer.append(String.format("image: %s", this.mImage));
 
         StringBuilder pieceBuffer = new StringBuilder();
-        for (Piece piece : _pieces)
+        for (Piece piece : mPieces)
         {
             pieceBuffer.append(String.format(" %s ", piece.toString()));
         }
@@ -106,19 +106,19 @@ public class Collection implements Parcelable {
     @Override
     public void writeToParcel(Parcel dest, int flags)
     {
-        dest.writeString(_title);
-        dest.writeString(_description);
-        dest.writeString(_image);
-        dest.writeTypedList(_pieces);
+        dest.writeString(mTitle);
+        dest.writeString(mDescription);
+        dest.writeString(mImage);
+        dest.writeTypedList(mPieces);
     }
 
     private Collection(Parcel in)
     {
         this();
-        _title = in.readString();
-        _description = in.readString();
-        _image = in.readString();
-        in.readTypedList(_pieces, Piece.CREATOR);
+        mTitle = in.readString();
+        mDescription = in.readString();
+        mImage = in.readString();
+        in.readTypedList(mPieces, Piece.CREATOR);
     }
 
     public static final Parcelable.Creator<Collection> CREATOR
