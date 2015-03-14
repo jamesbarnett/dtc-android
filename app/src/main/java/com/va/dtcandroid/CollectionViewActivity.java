@@ -10,19 +10,19 @@ import android.widget.*;
 
 
 public class CollectionViewActivity extends FragmentActivity {
-    private Collection _collection;
-    private ViewPager _pager;
-    private PiecesPageAdapter _piecesPageAdapter;
+    private Collection mCollection;
+    private ViewPager mPager;
+    private PiecesPageAdapter mPiecesPageAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_collection_view);
         Intent intent = getIntent();
-        _collection = intent.getParcelableExtra("selectedCollection");
-        _piecesPageAdapter = new PiecesPageAdapter(getSupportFragmentManager(), _collection);
-        _pager = (ViewPager)findViewById(R.id.piecesPager);
-        _pager.setAdapter(_piecesPageAdapter);
+        mCollection = intent.getParcelableExtra("selectedCollection");
+        mPiecesPageAdapter = new PiecesPageAdapter(getSupportFragmentManager(), mCollection);
+        mPager = (ViewPager)findViewById(R.id.piecesPager);
+        mPager.setAdapter(mPiecesPageAdapter);
     }
 
 
