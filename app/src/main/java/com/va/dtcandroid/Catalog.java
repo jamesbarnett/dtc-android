@@ -7,8 +7,8 @@ import android.util.*;
  * Created by jbarnett on 3/8/15.
  */
 public class Catalog {
-    private String _designer;
-    private List<Collection> _collections;
+    private String mDesigner;
+    private List<Collection> mCollections;
 
     public static Catalog parse(JsonReader reader) throws IOException
     {
@@ -21,11 +21,11 @@ public class Catalog {
             String name = reader.nextName();
             if (name.equals("designer"))
             {
-                catalog._designer = reader.nextString();
+                catalog.mDesigner = reader.nextString();
             }
             else if (name.equals("collections"))
             {
-                catalog._collections = Collection.parseCollections(reader);
+                catalog.mCollections = Collection.parseCollections(reader);
             }
         }
         return catalog;
@@ -37,21 +37,21 @@ public class Catalog {
     }
     public Catalog(String designer, List<Collection> collections)
     {
-        _designer = designer;
-        _collections = collections;
+        mDesigner = designer;
+        mCollections = collections;
     }
 
-    public String getDesigner() { return _designer; }
-    public List<Collection> getCollections() { return _collections; }
+    public String getDesigner() { return mDesigner; }
+    public List<Collection> getCollections() { return mCollections; }
 
     public String toString()
     {
         StringBuilder buffer = new StringBuilder();
-        buffer.append(String.format("Catalog: { designer: %s ", _designer));
+        buffer.append(String.format("Catalog: { designer: %s ", mDesigner));
 
         StringBuilder collectionBuffer = new StringBuilder();
 
-        for (Collection collection : _collections)
+        for (Collection collection : mCollections)
         {
             collectionBuffer.append(String.format(" %s ", collection.toString()));
         }
