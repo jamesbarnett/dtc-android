@@ -4,7 +4,7 @@ import java.io.*;
 import java.util.*;
 
 import android.content.Intent;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.util.*;
 import android.view.Menu;
@@ -12,22 +12,22 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.*;
 
-public class MainActivity extends ActionBarActivity {
-    private ListView _collectionsList;
-    private Catalog _catalog;
+public class MainActivity extends FragmentActivity {
+    private ListView mCollectionsList;
+    private Catalog mCatalog;
 
-    public Catalog getCatalog() { return _catalog; }
+    public Catalog getCatalog() { return mCatalog; }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        _collectionsList = (ListView)findViewById(R.id.list);
+        mCollectionsList = (ListView)findViewById(R.id.list);
 
         try {
             InputStream inputStream = this.getResources().getAssets().open("catalog.json");
             JsonReader reader = new JsonReader(new InputStreamReader(inputStream, "UTF-8"));
-            _catalog = Catalog.parse(reader);
+            mCatalog = Catalog.parse(reader);
             initCollectionsList();
         } catch (Exception e) {
             Log.d(MainActivity.class.getSimpleName(), String.format("Couldn't load the json file: %s", e.getMessage()));
@@ -60,24 +60,24 @@ public class MainActivity extends ActionBarActivity {
     {
         List<String> collectionTitles = new ArrayList<String>();
 
-        for (int i = 0; i < _catalog.getCollections().size(); i++)
+        for (int i = 0; i < mCatalog.getCollections().size(); i++)
         {
-            collectionTitles.add(_catalog.getCollections().get(i).getTitle());
+            collectionTitles.add(mCatalog.getCollections().get(i).getTitle());
         }
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_list_item_1,
                 collectionTitles);
-        _collectionsList.setAdapter(adapter);
+        mCollectionsList.setAdapter(adapter);
 
         final MainActivity mainActivity = this;
 
-        _collectionsList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        mCollectionsList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id)
             {
                 Intent intent = new Intent(mainActivity, CollectionViewActivity.class);
-                intent.putExtra("selectedCollection", _catalog.getCollections().get(position));
+                intent.putExtra("selectedCollection", mCatalog.getCollections().get(position));
                 startActivity(intent);
             }
         });
