@@ -19,7 +19,7 @@ import android.view.ViewGroup;
 public class PieceFragment extends Fragment {
     private static final String ARG_PARAM1 = "selectedCollection";
 
-    private Collection _collection;
+    private Collection mCollection;
 
     private OnFragmentInteractionListener _listener;
 
@@ -40,7 +40,7 @@ public class PieceFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            _collection = getArguments().getParcelable(ARG_PARAM1);
+            mCollection = getArguments().getParcelable(ARG_PARAM1);
         }
     }
 

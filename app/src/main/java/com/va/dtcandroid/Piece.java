@@ -10,9 +10,9 @@ import android.util.*;
  * Created by jbarnett on 3/8/15.
  */
 public class Piece implements Parcelable {
-    private String _title;
-    private String _description;
-    private String _image;
+    private String mTitle;
+    private String mDescription;
+    private String mImage;
 
     public Piece()
     {
@@ -46,15 +46,15 @@ public class Piece implements Parcelable {
 
             if (name.equals("title"))
             {
-                piece._title = reader.nextString();
+                piece.mTitle = reader.nextString();
             }
             else if (name.equals("description"))
             {
-                piece._description = reader.nextString();
+                piece.mDescription = reader.nextString();
             }
             else if (name.equals("image"))
             {
-                piece._image = reader.nextString();
+                piece.mImage = reader.nextString();
             }
         }
 
@@ -67,16 +67,16 @@ public class Piece implements Parcelable {
     {
         StringBuilder buffer = new StringBuilder();
 
-        buffer.append(String.format("Piece: { title: %s ", this._title));
-        buffer.append(String.format("description: %s ", this._description));
-        buffer.append(String.format("image: %s }", this._image));
+        buffer.append(String.format("Piece: { title: %s ", this.mTitle));
+        buffer.append(String.format("description: %s ", this.mDescription));
+        buffer.append(String.format("image: %s }", this.mImage));
 
         return buffer.toString();
     }
 
-    public String getTitle() { return _title; }
-    public String getDescription() { return _description; }
-    public String getImage() { return _image; }
+    public String getTitle() { return mTitle; }
+    public String getDescription() { return mDescription; }
+    public String getImage() { return mImage; }
 
     @Override
     public int describeContents()
@@ -87,9 +87,9 @@ public class Piece implements Parcelable {
     @Override
     public void writeToParcel(Parcel out, int flags)
     {
-        out.writeString(_title);
-        out.writeString(_description);
-        out.writeString(_image);
+        out.writeString(mTitle);
+        out.writeString(mDescription);
+        out.writeString(mImage);
     }
 
     public static final Parcelable.Creator<Piece> CREATOR = new Parcelable.Creator<Piece>()
@@ -107,9 +107,9 @@ public class Piece implements Parcelable {
 
     private Piece(Parcel in)
     {
-        _title = in.readString();
-        _description = in.readString();
-        _image = in.readString();
+        mTitle = in.readString();
+        mDescription = in.readString();
+        mImage = in.readString();
     }
 }
 
